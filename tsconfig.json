@@ -8,6 +8,9 @@
     },
     {
       "path": "./apps/web3auth-app"
+    },
+    {
+      "path": "./packages/web3auth-hook"
     }
   ]
 }

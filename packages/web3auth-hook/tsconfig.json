@@ -3,10 +3,13 @@
   "include": [],
   "references": [
     {
-      "path": "../../packages/web3auth-hook"
+      "path": "../web3auth-sdk"
     },
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
     }
   ],
   "extends": "../../tsconfig.base.json"
