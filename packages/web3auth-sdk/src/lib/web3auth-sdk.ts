@@ -202,3 +202,5 @@ export class Client {
     }
   }
 }
+
+export type { ClientConfigs };

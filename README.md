@@ -5,6 +5,7 @@
 ## Packages
 
 - [Web3auth SDK](./packages/web3auth-sdk/README.md): Framework agnostic library that serves as a wrapper to Djuno's web3-auth APIs.
+- [Web3auth React Hook](./packages/web3auth-hook/README.md): .. agnostic library that serves as a wrapper to Djuno's web3auth-sdk for .
 
 ## Apps
 
