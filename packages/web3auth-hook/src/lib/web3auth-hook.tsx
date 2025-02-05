@@ -26,6 +26,7 @@ interface Web3AuthContextType {
   getProfileAvatar: (token: string) => Promise<any>;
   profileAvatar: any;
   saveProfileAvatar: (token: string, formData: FormData) => Promise<any>;
+  setAccessKey: (newAccessKey: string) => Promise<any>;
 }
 
 const Web3AuthContext = createContext<Web3AuthContextType | undefined>(
@@ -39,7 +40,7 @@ export const Web3authProvider: React.FC<
   const [loading, setLoading] = useState<Record<string, boolean>>({});
   const [networks, setNetworks] = useState([]);
   const [profile, setFrofile] = useState({});
-  const [profileAvatar, setProfileAvatar] = useState({});
+  const [profileAvatar, setProfileAvatar] = useState<string | null>(null);
 
   const withLoading = useCallback(
     async (key: string, fn: () => Promise<any>) => {
@@ -96,7 +97,7 @@ export const Web3authProvider: React.FC<
     (token: string) =>
       withLoading('getProfileAvatar', async () => {
         const profileAvatarData = await client.getProfileAvatar(token);
-        setProfileAvatar(profileAvatarData);
+        setProfileAvatar(profileAvatarData.data);
       }),
     [client]
   );
@@ -106,6 +107,15 @@ export const Web3authProvider: React.FC<
       withLoading('saveProfileAvatar', () =>
         client.saveProfileAvatar(token, formData)
       ),
+    [client]
+  );
+
+  const setAccessKey = useCallback(
+    async (newAccessKey: string) => {
+      await withLoading('setAccessKey', async () => {
+        client.setAccessKey(newAccessKey);
+      });
+    },
     [client]
   );
 
@@ -124,6 +134,7 @@ export const Web3authProvider: React.FC<
         getProfileAvatar,
         profileAvatar,
         saveProfileAvatar,
+        setAccessKey,
       }}
     >
       {children}

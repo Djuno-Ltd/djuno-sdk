@@ -25,7 +25,7 @@ const client = new Client({
   accessKey: 'your-access-key',
 });
 
-const blockNumber = client.networks().then((response) => console.log(response));
+client.networks().then((response) => console.log(response));
 ```
 
 <br>
