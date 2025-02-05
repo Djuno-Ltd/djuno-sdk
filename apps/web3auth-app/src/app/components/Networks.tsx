@@ -5,7 +5,7 @@ const Networks = () => {
   const {
     networks,
     getNetworks,
-    getProfile,
+    // getProfile,
     // getProfileAvatar,
     // profile,
     // profileAvatar,

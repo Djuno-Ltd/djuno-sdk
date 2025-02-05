@@ -7,6 +7,18 @@ type ClientConfigs = {
   version?: string;
   headers?: Record<string, string>;
 };
+type Network = {
+  Id: number;
+  NetworkName: string;
+  ChainId: string;
+  WalletResponses: [
+    {
+      Id: number;
+      WalletName: string;
+      NetworkId: number;
+    }
+  ];
+};
 
 const initClientOptions: ClientConfigs = {
   endpointUrl: 'https://web3auth.djuno.cloud',
@@ -203,4 +215,4 @@ export class Client {
   }
 }
 
-export type { ClientConfigs };
+export type { ClientConfigs, Network };

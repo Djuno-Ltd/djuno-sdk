@@ -1,4 +1,4 @@
-import { Client, ClientConfigs } from '@djuno/web3auth-sdk';
+import { Client, ClientConfigs, Network } from '@djuno/web3auth-sdk';
 
 import React, {
   createContext,
@@ -9,23 +9,11 @@ import React, {
 } from 'react';
 import FormData from 'form-data';
 
-interface Networks {
-  Id: number;
-  NetworkName: string;
-  ChainId: string;
-  WalletResponses: [
-    {
-      Id: number;
-      WalletName: string;
-      NetworkId: number;
-    }
-  ];
-}
 interface Web3AuthContextType {
   client: Client;
   loading: Record<string, boolean>;
   getNetworks: () => Promise<any>;
-  networks: Array<Networks>;
+  networks: Array<Network>;
   handshake: (networkId: string, publicKey: string) => Promise<any>;
   verify: (
     networkId: string,
@@ -52,7 +40,6 @@ export const Web3authProvider: React.FC<
   const [networks, setNetworks] = useState([]);
   const [profile, setFrofile] = useState({});
   const [profileAvatar, setProfileAvatar] = useState({});
-  console.log('networks1', networks);
 
   const withLoading = useCallback(
     async (key: string, fn: () => Promise<any>) => {
