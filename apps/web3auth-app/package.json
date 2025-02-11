@@ -1,5 +1,11 @@
 {
   "name": "@djuno/web3auth-app",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "djuno-design": "^1.1.0-beta"
+  },
+  "devDependencies": {
+    "vite-plugin-svgr": "^4.3.0"
+  }
 }
