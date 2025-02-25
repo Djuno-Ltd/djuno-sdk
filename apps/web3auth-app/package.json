@@ -3,7 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "djuno-design": "^1.1.0-beta"
+    "@headlessui/react": "^2.2.0",
+    "@react-spring/web": "^9.7.5",
+    "@solana/wallet-adapter-react": "^0.15.35",
+    "@solana/wallet-adapter-react-ui": "^0.9.35",
+    "bs58": "^6.0.0",
+    "djuno-design": "^1.1.0-beta",
+    "keccak": "^3.0.4",
+    "react-hot-toast": "^2.5.1"
   },
   "devDependencies": {
     "vite-plugin-svgr": "^4.3.0"

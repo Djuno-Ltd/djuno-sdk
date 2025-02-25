@@ -6,6 +6,7 @@ import HomePage from './app/pages/HomePage';
 import FilesPage from './app/pages/FilesPage';
 import SettingsPage from './app/pages/SettingsPage';
 import NotFindPage from './app/pages/NotFindPage';
+import AuthProvider from './app/providers/AuthProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,9 +19,9 @@ root.render(
         <Route
           path="/"
           element={
-            // <AuthProvider>
-            <App />
-            // </AuthProvider>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
           }
         >
           <Route index element={<HomePage />} />
