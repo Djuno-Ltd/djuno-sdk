@@ -7,6 +7,7 @@ type ClientConfigs = {
   version?: string;
   headers?: Record<string, string>;
 };
+
 type Network = {
   Id: number;
   NetworkName: string;
@@ -53,14 +54,12 @@ export class Client {
       return {
         status: false,
         message: error.response?.data?.message || error.message,
-        code: error.response?.status || 500,
         data: null,
       };
     }
     return {
       status: false,
       message: 'An unknown error occurred',
-      code: 500,
       data: null,
     };
   }

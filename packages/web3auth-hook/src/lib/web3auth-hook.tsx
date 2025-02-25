@@ -1,25 +1,19 @@
 import { Client, ClientConfigs, Network } from '@djuno/web3auth-sdk';
 
-import React, {
-  createContext,
-  useContext,
-  useState,
-  // ReactNode,
-  useCallback,
-} from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 import FormData from 'form-data';
 
 interface Web3AuthContextType {
   client: Client;
   loading: Record<string, boolean>;
-  getNetworks: () => Promise<any>;
+  getNetworks: () => Promise<Network[]>;
   networks: Array<Network>;
-  handshake: (networkId: string, publicKey: string) => Promise<any>;
+  handshake: (networkId: string, publicKey: string) => Promise<string>;
   verify: (
     networkId: string,
     publicKey: string,
     signature: string
-  ) => Promise<any>;
+  ) => Promise<string>;
   getProfile: (token: string) => Promise<any>;
   profile: any;
   updateProfile: (token: string, data: unknown) => Promise<any>;
@@ -55,26 +49,37 @@ export const Web3authProvider: React.FC<
   );
 
   const getNetworks = useCallback(
-    () =>
+    (): Promise<Network[]> =>
       withLoading('networks', async () => {
-        const networksData = await client.networks();
-        setNetworks(networksData.data);
+        const response = await client.networks();
+        const networks = response.data || [];
+        if (response.status) setNetworks(networks);
+        return networks;
       }),
-
     [client]
   );
 
   const handshake = useCallback(
-    (networkId: string, publicKey: string) =>
-      withLoading('handshake', () => client.handshake(networkId, publicKey)),
+    (networkId: string, publicKey: string): Promise<string> =>
+      withLoading('handshake', async () => {
+        const response = await client.handshake(networkId, publicKey);
+        const signature = response.data;
+        return signature;
+      }),
     [client]
   );
 
   const verify = useCallback(
-    (networkId: string, publicKey: string, signature: string) =>
-      withLoading('verify', () =>
-        client.verify(networkId, publicKey, signature)
-      ),
+    (
+      networkId: string,
+      publicKey: string,
+      signature: string
+    ): Promise<string> =>
+      withLoading('verify', async () => {
+        const response = await client.verify(networkId, publicKey, signature);
+        const token = response.data;
+        return token;
+      }),
     [client]
   );
 
