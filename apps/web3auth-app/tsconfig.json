@@ -3,6 +3,9 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/web3auth-sdk"
+    },
+    {
       "path": "../../packages/web3auth-hook"
     },
     {
