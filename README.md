@@ -101,7 +101,7 @@ These hooks abstract complexity and simplify interacting with the Web3Auth SDK i
 
 - [Djuno Web3Auth SDK README](https://github.com/Djuno-Ltd/djuno-sdk/blob/main/packages/web3auth-sdk/README.md)
 - [Djuno Web3Auth Hook README](https://github.com/Djuno-Ltd/djuno-sdk/blob/main/packages/web3auth-hook/README.md)
-- [Djuno API Documentation](https://docs.djuno.io/en/articles/10108745-wallet-api-reference)
+- [Djuno API Documentation](https://docs.djuno.io/en/articles/10108332-web3-0-auth-service)
 
 ## License
 
