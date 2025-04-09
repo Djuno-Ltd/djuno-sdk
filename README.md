@@ -1,4 +1,3 @@
-````markdown
 # Djuno Web3Auth SDK
 
 This repository includes two core packages for integrating Djuno’s Web3 authentication into your React applications:
@@ -17,11 +16,10 @@ Djuno Web3Auth enables seamless Web3 login and wallet operations via secure, sca
 
 Create a `.env` file at the root of your app:
 
-```bash
+````bash
 REACT_APP_DJUNO_ACCESS_KEY=your-djuno-access-key
 REACT_APP_DJUNO_ENDPOINT_URL=https://api.djuno.io
-```
-````
+
 
 ## Installation
 
@@ -29,7 +27,7 @@ To install both packages in your app:
 
 ```bash
 npm install @djuno/web3auth-sdk @djuno/web3auth-hook
-```
+````
 
 ## Usage Example
 
