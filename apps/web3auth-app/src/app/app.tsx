@@ -1,8 +1,5 @@
-// import { Client as Web3AuthClient } from '@djuno/web3auth-sdk';
-// import { useEffect } from 'react';
 import 'djuno-design/dist/index.css';
 import { Web3authProvider } from '@djuno/web3auth-hook';
-// import Networks from './components/Networks';
 import {
   Flex,
   PanelHeader,
@@ -10,8 +7,6 @@ import {
   PanelSidebar,
   Sidebar,
   SidebarItem,
-  ThemeChanger,
-  Typography,
 } from 'djuno-design';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useCallback, useMemo } from 'react';
@@ -21,16 +16,7 @@ import FilesIcon from '../assets/icons/files.svg?react';
 import SettingIcon from '../assets/icons/setting.svg?react';
 
 export function App() {
-  // const endpointUrl = import.meta.env.VITE_WEB3AUTH_URL;
   const accessKey = import.meta.env.VITE_WEB3AUTH_KEY;
-
-  // const client = new Web3AuthClient({ endpointUrl, accessKey });
-
-  // useEffect(() => {
-  //   client.networks().then((response) => {
-  //     console.log(response);
-  //   });
-  // }, []);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,11 +40,6 @@ export function App() {
             index: 0,
             value: undefined,
           },
-          // {
-          //   index: 0,
-          //   value: 'home',
-          //   operator: 'or',
-          // },
         ],
         link: '/',
         onClick: handleSidebarNavigation,
@@ -93,11 +74,6 @@ export function App() {
   }, [handleSidebarNavigation]);
 
   return (
-    // <div>
-    //   <Web3authProvider clientConfigs={{ accessKey }}>
-    //     <Networks />
-    //   </Web3authProvider>
-    // </div>
     <div
       className=" bg-white dark:bg-[#1D2125]"
       style={{
@@ -109,9 +85,7 @@ export function App() {
         <PanelLayout
           type="normal"
           pathname={location.pathname}
-          // className=""
           renderSidebar={({ segments, ...sidebarProps }) => {
-            // console.log(segments);
             return (
               <PanelSidebar
                 {...sidebarProps}
@@ -141,9 +115,7 @@ export function App() {
                 justify="end"
                 items="center"
                 className="w-full pl-3 md:pl-0"
-              >
-                {/* <ThemeChanger anchor="bottom end" /> */}
-              </Flex>
+              ></Flex>
             </PanelHeader>
           )}
           enableGoToTopAfterScroll={true}

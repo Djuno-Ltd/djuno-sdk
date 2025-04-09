@@ -1,41 +1,73 @@
 # Djuno Web3Auth SDK
 
-This repository includes two core packages for integrating Djuno’s Web3 authentication into your React applications:
+This project enables secure Web3 authentication in your React application using [Djuno](https://djuno.io)’s Web3Auth APIs. It uses two main packages:
 
-- [`web3auth-sdk`](./packages/web3auth-sdk) – Core SDK to interact with Djuno's Web3Auth APIs.
-- [`web3auth-hook`](./packages/web3auth-hook) – React hooks for easily integrating Djuno Web3Auth into frontend apps.
+- [`@djuno/web3auth-sdk`](https://www.npmjs.com/package/@djuno/web3auth-sdk) – A JavaScript SDK to interact with Djuno’s backend APIs.
+- [`@djuno/web3auth-hook`](https://www.npmjs.com/package/@djuno/web3auth-hook) – React hooks that make it easy to use the SDK in frontend apps.
 
-## Overview
+---
 
-Djuno Web3Auth enables seamless Web3 login and wallet operations via secure, scalable APIs. This SDK is designed for developers building modern Web3 applications using React.
+## ✨ Features
 
-## Prerequisites
+- Web3 user authentication via secure APIs
+- Fetching blockchain network information
+- Simple integration with React using hooks
+- No wallet management required
 
-- Node.js v16 or higher
-- A Djuno Access Key
+---
 
-Create a `.env` file at the root of your app:
+## 🧰 Prerequisites
 
-````bash
-REACT_APP_DJUNO_ACCESS_KEY=your-djuno-access-key
-REACT_APP_DJUNO_ENDPOINT_URL=https://api.djuno.io
+- Node.js `v16+`
+- A Djuno Access Key from [djuno.io](https://djuno.io)
 
+Create a `.env` file in your project root:
 
-## Installation
+```env
+VITE_WEB3AUTH_KEY=your-djuno-access-key
+VITE_WEB3AUTH_URL=https://api.djuno.io
+```
 
-To install both packages in your app:
+---
+
+## 📦 Installation
+
+Install the packages:
 
 ```bash
 npm install @djuno/web3auth-sdk @djuno/web3auth-hook
-````
+```
 
-## Usage Example
+---
 
-Here’s how to integrate `web3auth-hook` in a React app:
+## ⚙️ Basic Setup
+
+Wrap your app with the `Web3authProvider`:
 
 ```tsx
-import React, { useEffect } from 'react';
-import { Web3authProvider, useWeb3Auth } from '@djuno/web3auth-hook';
+import { Web3authProvider } from '@djuno/web3auth-hook';
+import App from './App';
+
+const Root = () => (
+  <Web3authProvider
+    clientConfigs={{ accessKey: import.meta.env.VITE_WEB3AUTH_KEY }}
+  >
+    <App />
+  </Web3authProvider>
+);
+
+export default Root;
+```
+
+---
+
+## 🧪 Usage Example
+
+Use the hook to fetch available networks:
+
+```tsx
+import { useEffect } from 'react';
+import { useWeb3Auth } from '@djuno/web3auth-hook';
 
 const Networks = () => {
   const { getNetworks } = useWeb3Auth();
@@ -46,67 +78,72 @@ const Networks = () => {
 
   return <div>Connected to Djuno Web3Auth</div>;
 };
-
-const App = () => (
-  <Web3authProvider
-    accessKey={process.env.REACT_APP_DJUNO_ACCESS_KEY}
-    endpointUrl={process.env.REACT_APP_DJUNO_ENDPOINT_URL}
-  >
-    <Networks />
-  </Web3authProvider>
-);
-
-export default App;
 ```
 
-## Scripts
+Or use the SDK directly:
 
-To run or build locally:
+```ts
+import { Client as Web3AuthClient } from '@djuno/web3auth-sdk';
+
+const client = new Web3AuthClient({
+  endpointUrl: import.meta.env.VITE_WEB3AUTH_URL,
+  accessKey: import.meta.env.VITE_WEB3AUTH_KEY,
+});
+
+client.networks().then(console.log).catch(console.error);
+```
+
+---
+
+## 🛠️ Scripts
+
+Available commands:
 
 ```bash
-# Development
+# Start dev server
 npm start
 
 # Production build
 npm run build
 
-# Lint and format
+# Format code
 npm run prettier
 ```
 
-## Development
+---
 
-To develop locally:
+## 🧑‍💻 Local Development
+
+To build both SDK packages locally:
 
 ```bash
-# At root
+# At repo root
 npm install
-npm run build  # Builds both packages
+npm run build
 ```
 
-You can also navigate to each package folder and run tests or local builds individually.
+You can also go into each `packages/` folder and build/test them individually.
 
-## Core Concepts (`web3auth-hook`)
+---
 
-- `Web3authProvider`: Wrap your app to provide auth context.
-- `useWeb3Auth()`: Hook exposing auth methods like:
+## 🧠 Core Concepts
+
+- **Web3authProvider**: Context provider to make auth accessible in your React tree.
+- **useWeb3Auth Hook**: Gives access to authentication and network methods:
   - `getUser()`
   - `getNetworks()`
-  - `connectWallet()`
-  - `disconnectWallet()`
 
-These hooks abstract complexity and simplify interacting with the Web3Auth SDK in your frontend.
+---
 
-## Links
+## 🔗 Useful Links
 
-- [Djuno Web3Auth SDK README](https://github.com/Djuno-Ltd/djuno-sdk/blob/main/packages/web3auth-sdk/README.md)
-- [Djuno Web3Auth Hook README](https://github.com/Djuno-Ltd/djuno-sdk/blob/main/packages/web3auth-hook/README.md)
+- [Djuno SDK GitHub](https://github.com/Djuno-Ltd/djuno-sdk/tree/new-sdk)
 - [Djuno API Documentation](https://docs.djuno.io/en/articles/10108332-web3-0-auth-service)
+- [@djuno/web3auth-sdk on npm](https://www.npmjs.com/package/@djuno/web3auth-sdk)
+- [@djuno/web3auth-hook on npm](https://www.npmjs.com/package/@djuno/web3auth-hook)
 
-## License
+---
+
+## 📄 License
 
 This project is licensed under the MIT License.
-
-```
-
-```
