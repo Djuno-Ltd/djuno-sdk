@@ -16,7 +16,7 @@ This project enables secure Web3 authentication in your React application using 
 
 ---
 
-## 🧰 Prerequisites
+## Prerequisites
 
 - Node.js `v16+`
 - A Djuno Access Key from [djuno.io](https://djuno.io)
@@ -61,7 +61,7 @@ export default Root;
 
 ---
 
-## 🧪 Usage Example
+## 📄 Usage Example
 
 Use the hook to fetch available networks:
 
@@ -112,7 +112,7 @@ npm run prettier
 
 ---
 
-## 🧑‍💻 Local Development
+## 🚀 Local Development
 
 To build both SDK packages locally:
 
@@ -126,7 +126,7 @@ You can also go into each `packages/` folder and build/test them individually.
 
 ---
 
-## 🧠 Core Concepts
+## 📄 Core Concepts
 
 - **Web3authProvider**: Context provider to make auth accessible in your React tree.
 - **useWeb3Auth Hook**: Gives access to authentication and network methods:
@@ -144,6 +144,6 @@ You can also go into each `packages/` folder and build/test them individually.
 
 ---
 
-## 📄 License
+## 🛡 License
 
 This project is licensed under the MIT License.
