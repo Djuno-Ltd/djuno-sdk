@@ -8,6 +8,8 @@
 
 - [Web3auth React Hook](./packages/web3auth-hook/README.md): A React package that serves as a wrapper for Djuno's web3auth, providing authentication and profile management for Web3 applications.
 
+- [Web3auth UI](./packages/web3auth-ui/README.md): A React UI library built on top of Djuno's Web3Auth SDK and hook, offering ready-to-use components like `Web3authUiProvider` and `WalletInfoButton` for seamless wallet authentication and user profile flows.
+
 ## Apps
 
-- [Web3auth SDK example app](./apps/web3auth-app/)
+- [Web3auth example app](./apps/demo-ui/)
