@@ -1,8 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "out-tsc/web3auth-app",
-    "tsBuildInfoFile": "out-tsc/web3auth-app/tsconfig.app.tsbuildinfo",
+    "outDir": "out-tsc/demo-ui",
+    "tsBuildInfoFile": "out-tsc/demo-ui/tsconfig.app.tsbuildinfo",
     "jsx": "react-jsx",
     "lib": ["dom"],
     "types": [
@@ -30,7 +30,7 @@
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
     {
-      "path": "../../packages/web3auth-hook/tsconfig.lib.json"
+      "path": "../../packages/web3auth-ui/tsconfig.lib.json"
     }
   ]
 }

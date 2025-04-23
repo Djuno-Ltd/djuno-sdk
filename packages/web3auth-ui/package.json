@@ -1,0 +1,38 @@
+{
+  "name": "@djuno/web3auth-ui",
+  "version": "0.1.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/style.css",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./dist/style.css": {
+      "default": "./dist/style.css"
+    }
+  },
+  "dependencies": {
+    "@solana/wallet-adapter-base": "^0.9.25",
+    "@solana/wallet-adapter-react": "^0.15.37",
+    "@solana/wallet-adapter-react-ui": "^0.9.37",
+    "@solana/wallet-adapter-wallets": "^0.19.35",
+    "bs58": "^6.0.0",
+    "djuno-design": "^1.2.6",
+    "ethers": "^6.13.5",
+    "keccak": "^3.0.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.4",
+    "@types/keccak": "^3.0.5",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.4",
+    "vite-plugin-svgr": "^4.3.0"
+  }
+}

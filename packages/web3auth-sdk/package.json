@@ -1,6 +1,6 @@
 {
   "name": "@djuno/web3auth-sdk",
-  "version": "0.0.3",
+  "version": "0.1.1",
   "private": false,
   "description": "Djuno web3auth sdk for js projects",
   "type": "module",

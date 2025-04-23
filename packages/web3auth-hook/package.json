@@ -1,6 +1,6 @@
 {
   "name": "@djuno/web3auth-hook",
-  "version": "0.0.4",
+  "version": "0.1.1",
   "private": false,
   "description": "React hook provider, providing authentication and profile management in Web3 applications.",
   "type": "module",

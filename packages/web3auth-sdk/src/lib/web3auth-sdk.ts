@@ -12,13 +12,13 @@ type Network = {
   Id: number;
   NetworkName: string;
   ChainId: string;
-  WalletResponses: [
-    {
-      Id: number;
-      WalletName: string;
-      NetworkId: number;
-    }
-  ];
+  WalletResponses: Array<NetworkWallet>;
+};
+
+type NetworkWallet = {
+  Id: number;
+  WalletName: string;
+  NetworkId: number;
 };
 
 const initClientOptions: ClientConfigs = {
@@ -214,4 +214,4 @@ export class Client {
   }
 }
 
-export type { ClientConfigs, Network };
+export type { ClientConfigs, Network, NetworkWallet };

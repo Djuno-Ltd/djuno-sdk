@@ -3,7 +3,7 @@
   "include": [],
   "references": [
     {
-      "path": "../../packages/web3auth-hook"
+      "path": "../../packages/web3auth-ui"
     },
     {
       "path": "./tsconfig.app.json"
