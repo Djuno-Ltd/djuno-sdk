@@ -2,7 +2,7 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletIcon } from '@solana/wallet-adapter-react-ui';
 import { useEffect } from 'react';
-// import { ReactComponent as Logo } from '../assets/icons/logo.svg';
+import { motion } from 'motion/react';
 import { MetamaskIcon } from '../providers/MetamaskProvider';
 import { NetworkWallet, useWeb3Auth } from '@djuno/web3auth-hook';
 import { useWeb3authUi } from '../providers/IndexProvider';
@@ -117,7 +117,8 @@ function WalletsConnectionCard({ absolute }: { absolute?: boolean }) {
   };
   if (absolute) return <WalletConnectionContent />;
   return (
-    <div
+    <motion.div
+      exit={{ opacity: 0 }}
       className={'w-screen h-screen flex flex-col justify-center items-center'}
     >
       <Card className={'!min-w-[300px] !max-w-md'}>
@@ -127,7 +128,7 @@ function WalletsConnectionCard({ absolute }: { absolute?: boolean }) {
         </Typography.Title>
         <WalletConnectionContent />
       </Card>
-    </div>
+    </motion.div>
   );
 }
 

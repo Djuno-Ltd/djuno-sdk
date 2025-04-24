@@ -15,7 +15,7 @@ import {
   removeLocalStorage,
   setLocalStorage,
 } from 'djuno-design';
-// import { animated, useTransition } from '@react-spring/web';
+import { AnimatePresence } from 'motion/react';
 import { useWeb3Auth, Network } from '@djuno/web3auth-hook';
 import WalletsConnectionCard from '../components/WalletsConnectionCard';
 import { useWallet } from '@solana/wallet-adapter-react';
@@ -28,6 +28,7 @@ export type IndexContextType = {
   logout: () => void;
   connect: (chainId: string) => void;
   // walletName: WalletName | null;
+  token: string | null;
   publicKey: string | null;
   transformed_publicKey: string | null;
   connecting: boolean;
@@ -35,7 +36,7 @@ export type IndexContextType = {
 };
 
 type AuthStatus = 'connect_wallet' | 'loading' | 'ok';
-type WalletName = 'Metamask' | 'Phantom';
+// type WalletName = 'Metamask' | 'Phantom';
 
 export const IndexContext = createContext<IndexContextType | undefined>(
   undefined
@@ -44,6 +45,7 @@ export const IndexContext = createContext<IndexContextType | undefined>(
 const IndexProvider = ({ children }: PropsWithChildren) => {
   const [selectedNetwork, setSelectedNetwork] = useState<Network | null>(null);
   const [status, setStatus] = useState<AuthStatus>('loading');
+  const [token, setToken] = useState<string | null>(null);
   // const [walletName, setWalletName] = useState<WalletName | null>(null);
 
   const { handshake, verify, getProfile, networks } = useWeb3Auth();
@@ -58,6 +60,14 @@ const IndexProvider = ({ children }: PropsWithChildren) => {
       }
       setSelectedNetwork(_network);
     }
+  }, [networks]);
+
+  useEffect(() => {
+    const _token = getLocalStorage<string | null>('token', null);
+    if (!_token) {
+      setLocalStorage('token', null);
+    }
+    setToken(_token);
   }, [networks]);
 
   // find and set selected wallet name from localStorage
@@ -225,6 +235,7 @@ const IndexProvider = ({ children }: PropsWithChildren) => {
         try {
           if (publicKey) {
             setLocalStorage('token', token);
+            setToken(token);
             setLocalStorage('publicKey', publicKey);
             getProfile(token);
             setStatus('ok');
@@ -318,14 +329,6 @@ const IndexProvider = ({ children }: PropsWithChildren) => {
     [selectedNetwork, metamaskConnect, solanaConnect]
   );
 
-  //   const transition = useTransition(status==='connect_wallet', {
-  //     from: { opacity: 0 },
-  //     leave: { opacity: 0 },
-  //     enter: {
-  //       opacity: 1,
-  //     },
-  //   });
-
   return (
     <IndexContext.Provider
       value={{
@@ -333,21 +336,16 @@ const IndexProvider = ({ children }: PropsWithChildren) => {
         handleChangeSelectedNetwork,
         logout,
         connect,
+        token,
         publicKey,
         transformed_publicKey,
         connecting,
         connected,
       }}
     >
-      {/* {transition(
-        (animationStyle, show) =>
-          show && (
-            <animated.div style={animationStyle}>
-              <WalletModal />
-            </animated.div>
-          )
-      )} */}
-      {status === 'connect_wallet' && <WalletsConnectionCard />}
+      <AnimatePresence>
+        {status === 'connect_wallet' && <WalletsConnectionCard />}
+      </AnimatePresence>
       {status === 'ok' && <>{children}</>}
       {status === 'loading' && (
         <Flex items="center" justify="center" className="w-screen h-screen">
